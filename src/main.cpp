@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Texture.h"
 #include "Sprite.h"
+#include "Input.h"
 
 using std::string;
 
@@ -26,8 +27,28 @@ int main()
 	return 0;
 }
 
+void handleMovement()
+{
+	if (keyPressed(Input::A))
+	{
+		player->x -= 2;
+	}
+	else if (keyPressed(Input::D))
+	{
+		player->x += 2;
+	};
+
+	if (keyPressed(Input::W))
+	{
+		player->y -= 2;
+	}
+	else if (keyPressed(Input::S))
+	{
+		player->y += 2;
+	}
+}
+
 void Game::loop()
 {
-	player->x += 1;
-	player->y += 1;
+	handleMovement();
 }
