@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Sprite.h"
+#include "Group.h"
 
 using std::string;
 using std::vector;
@@ -17,59 +18,25 @@ private:
   int height;
   string title;
   vector<int> background_colours;
-
   vector<Sprite *> sprites;
-
+  vector<Group *> groups;
   sf::RenderWindow win;
 
 public:
-  Game(int _width, int _height, string _title, vector<int> _background_colours) : win(sf::VideoMode(_width, _height), _title)
-  {
-    background_colours = _background_colours;
-  }
-
+  Game(int _width, int _height, string _title, vector<int> _background_colours);
   void run();
+  void drawSprites(sf::RenderWindow &win);
+  void drawGroups(sf::RenderWindow &win);
   void loop();
-
-  Sprite createSprite(int x, int y, Texture texture)
-  {
-    Sprite sprite(x, y, texture);
-    sprite.getSprite().setTexture(texture.getTexture());
-    sprite.getSprite().move(sf::Vector2f(x, y));
-    sprites.push_back(&sprite);
-
-    return sprite;
-  }
-
-  vector<Sprite *> getSprites()
-  {
-    return sprites;
-  }
-
-  int getWidth()
-  {
-    return width;
-  }
-
-  int getHeight()
-  {
-    return height;
-  }
-
-  string getTitle()
-  {
-    return title;
-  }
-
-  vector<int> getBackgroundColours()
-  {
-    return background_colours;
-  }
-
-  sf::RenderWindow &getWindow()
-  {
-    return win;
-  }
+  Group createGroup();
+  Sprite createSprite(int x, int y, Texture texture);
+  vector<Sprite *> getSprites();
+  int getWidth();
+  int getHeight();
+  string getTitle();
+  vector<int> getBackgroundColours();
+  sf::RenderWindow &getWindow();
+  vector<Group *> getGroups();
 } Game;
 
 #endif

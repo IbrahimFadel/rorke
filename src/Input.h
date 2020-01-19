@@ -1,10 +1,6 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-// #include <SFML/Graphics.hpp>
-
-// using sf::Keyboard;
-// typedef enum Keys
 namespace Input
 {
 typedef enum keys
