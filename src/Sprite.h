@@ -8,51 +8,52 @@
 
 typedef class Sprite
 {
-  private:
-    Texture texture;
-    sf::Sprite sprite;
-  public:
-    int x;
-    int y;
+private:
+  Texture texture;
+  sf::Sprite sprite;
 
-    Sprite(int _x, int _y, Texture _texture) : texture(texture.getPath())
-    {  
-      x = _x;
-      y = _y;
-      texture = _texture;
-    }
+public:
+  int x;
+  int y;
 
-    void init()
-    {
-      sprite.setTexture(texture.getTexture());
-    }
+  Sprite(int _x, int _y, Texture _texture) : texture(_texture.getPath())
+  {
+    x = _x;
+    y = _y;
+    texture = _texture;
+  }
 
-    void update()
-    {
-      updatePosition();
-    }
+  void init()
+  {
+    sprite.setTexture(texture.getTexture());
+  }
 
-    void updatePosition()
-    {
-      sprite.move(sf::Vector2f(x, y));
-    }
+  void update()
+  {
+    updatePosition();
+  }
 
-    void setX(int _x)
-    {
-      x = _x;
-    }
+  void updatePosition()
+  {
+    sprite.setPosition((float) x, (float) y);
+  }
 
-    sf::Sprite &getSprite()
-    {
-      texture.getTexture().loadFromFile(texture.getPath());
-      sprite.setTexture(texture.getTexture());
-      return sprite;
-    }
+  void setX(int _x)
+  {
+    x = _x;
+  }
 
-    Texture getTexture()
-    {
-      return texture;
-    }
+  sf::Sprite &getSprite()
+  {
+    texture.getTexture().loadFromFile(texture.getPath());
+    sprite.setTexture(texture.getTexture());
+    return sprite;
+  }
+
+  Texture getTexture()
+  {
+    return texture;
+  }
 
 } Sprite;
 

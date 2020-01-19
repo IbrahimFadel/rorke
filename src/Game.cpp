@@ -5,8 +5,8 @@
 #include "Game.h"
 #include "Sprite.h"
 
-using std::vector;
 using std::string;
+using std::vector;
 
 void Game::run()
 {
@@ -19,17 +19,19 @@ void Game::run()
     {
       if (event.type == sf::Event::Closed)
       {
-        win.close();        
+        win.close();
       }
     }
 
     win.clear(sf::Color(getBackgroundColours()[0], getBackgroundColours()[1], getBackgroundColours()[2], getBackgroundColours()[3]));
-    // for(int i = 0; i < getSprites().size(); i++)
-    // {
-    //   std::cout << getSprites()[i]->x << " " << getSprites()[i]->getSprite().getPosition().x << std::endl;
-    //   getSprites()[i]->update();
-    //   win.draw(getSprites()[i]->getSprite());
-    // }
+    vector<Sprite *> sprites = getSprites();
+    for (int i = 0; i < sprites.size(); i++)
+    {
+      Sprite *sprite = sprites[i];
+      sprite->update();
+      win.draw(sprite->getSprite());
+    }
+
     win.display();
   }
 };

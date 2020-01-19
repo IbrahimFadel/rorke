@@ -7,68 +7,69 @@
 
 #include "Sprite.h"
 
-using std::vector;
 using std::string;
+using std::vector;
 
 typedef class Game
 {
-  private:
-    int width;
-    int height;
-    string title;
-    vector<int> background_colours;
+private:
+  int width;
+  int height;
+  string title;
+  vector<int> background_colours;
 
-    vector<Sprite*> sprites;
+  vector<Sprite *> sprites;
 
-    sf::RenderWindow win;
-  public:
-    Game(int _width, int _height, string _title, vector<int> _background_colours) : win(sf::VideoMode(_width, _height), _title)
-    {
-      background_colours = _background_colours;
-    }
+  sf::RenderWindow win;
 
-    void run();
-    void loop();
+public:
+  Game(int _width, int _height, string _title, vector<int> _background_colours) : win(sf::VideoMode(_width, _height), _title)
+  {
+    background_colours = _background_colours;
+  }
 
-    Sprite *createSprite(int x, int y, Texture texture)
-    {
-      Sprite *sprite = new Sprite(x, y, texture);
-      sprite->getSprite().setTexture(texture.getTexture());
-      sprite->getSprite().move(sf::Vector2f(x, y));
-      sprites.push_back(sprite);
+  void run();
+  void loop();
 
-      return sprite;
-    }
+  Sprite createSprite(int x, int y, Texture texture)
+  {
+    Sprite sprite(x, y, texture);
+    sprite.getSprite().setTexture(texture.getTexture());
+    sprite.getSprite().move(sf::Vector2f(x, y));
+    sprites.push_back(&sprite);
 
-    vector<Sprite*> getSprites()
-    {
-      return sprites;
-    }
+    return sprite;
+  }
 
-    int getWidth()
-    {
-      return width;
-    }
+  vector<Sprite *> getSprites()
+  {
+    return sprites;
+  }
 
-    int getHeight()
-    {
-      return height;
-    }
+  int getWidth()
+  {
+    return width;
+  }
 
-    string getTitle()
-    {
-      return title;
-    }
+  int getHeight()
+  {
+    return height;
+  }
 
-    vector<int> getBackgroundColours()
-    {
-      return background_colours;
-    }
+  string getTitle()
+  {
+    return title;
+  }
 
-    sf::RenderWindow &getWindow()
-    {
-      return win;
-    }
+  vector<int> getBackgroundColours()
+  {
+    return background_colours;
+  }
+
+  sf::RenderWindow &getWindow()
+  {
+    return win;
+  }
 } Game;
 
 #endif
