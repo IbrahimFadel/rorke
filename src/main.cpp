@@ -4,10 +4,12 @@
 #include "Texture.h"
 #include "Sprite.h"
 #include "Input.h"
+#include "Group.h"
 
 using std::string;
 
 Sprite *player;
+Group *group;
 
 int main()
 {
@@ -21,6 +23,11 @@ int main()
 
 	Sprite _player = game.createSprite(0, 0, player_texture);
 	player = &_player;
+
+	Group _group = game.createGroup();
+	group = &_group;
+
+	Sprite _member1 = group->create(100, 50, player_texture);
 
 	game.run();
 
